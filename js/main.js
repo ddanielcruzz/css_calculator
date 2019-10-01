@@ -21,7 +21,12 @@ const subButton = document.getElementById('btn-sub');
 const plusButton = document.getElementById('btn-plus');
 
 const numbersClick = number => {
-  alert(number);
+  const actualText = inputString.textContent;
+  inputString.textContent = actualText == 0 && number == 0
+    ? 0
+    : actualText == 0
+    ? number
+    : actualText + number;
 };
 
 const equalClick = () => {
@@ -33,7 +38,7 @@ const periodClick = () => {
 };
 
 const delClick = () => {
-  alert('-');
+  inputString.textContent = 0;
 };
 
 const divClick = () => {
