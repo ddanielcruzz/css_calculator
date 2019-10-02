@@ -1,5 +1,3 @@
-// TODO implement mathjs
-
 const button0 = document.getElementById('btn-0');
 const button1 = document.getElementById('btn-1');
 const button2 = document.getElementById('btn-2');
@@ -14,7 +12,7 @@ const equalButton = document.getElementById('equal');
 const periodButton = document.getElementById('period');
 
 const inputString = document.getElementById('input');
-const resultString = document.getElementById('result');
+const resultString = document.getElementById('result-text');
 
 const delButton = document.getElementById('btn-del');
 const divButton = document.getElementById('btn-div');
@@ -24,19 +22,30 @@ const plusButton = document.getElementById('btn-plus');
 
 const numbersClick = number => {
   const actualText = inputString.textContent;
-  inputString.textContent = actualText == 0 && number == 0
-    ? 0
-    : actualText == 0
+
+  const result = actualText === '0' && number === '0'
+    ? '0'
+    : actualText == '0'
     ? number
-    : actualText + number;
+    : `${actualText}${number}`;
+
+  console.log(result);
+  inputString.textContent = result;
 };
 
 const equalClick = () => {
-  alert('equal')
+  const result = math.evaluate('1.2 * (2 + 4.5)');
+  resultString.textContent = result;
 };
 
 const periodClick = () => {
-  alert('period');
+  const actualText = inputString.textContent;
+  inputString.textContent = actualText.indexOf('.') >= 0 
+    ? actualText + '' 
+    : actualText == 0
+    ? '0.'
+    : actualText + '.';
+
 };
 
 const delClick = () => {
