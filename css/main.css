@@ -73,6 +73,7 @@ body{
   justify-items: center;
   align-items: center;
   color: #545454;
+  cursor: pointer;
   border-bottom-right-radius: 8px;
 }
 
