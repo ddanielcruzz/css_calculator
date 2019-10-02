@@ -29,12 +29,12 @@ const numbersClick = number => {
     ? number
     : `${actualText}${number}`;
 
-  console.log(result);
   inputString.textContent = result;
 };
 
 const equalClick = () => {
-  const result = math.evaluate('1.2 * (2 + 4.5)');
+  const expression = inputString.textContent.replace('x', '*');
+  const result = math.evaluate(expression);
   resultString.textContent = result;
 };
 
@@ -53,19 +53,35 @@ const delClick = () => {
 };
 
 const divClick = () => {
-  alert('/');
+  const actualText = inputString.textContent;
+  const result = actualText.slice(-1) === '.'
+    ? `${actualText.slice(0, -1)}/`
+    : `${actualText}/`;
+  inputString.textContent = result;
 };
 
 const timesClick = () => {
-  alert('*');
+  const actualText = inputString.textContent;
+  const result = actualText.slice(-1) === '.'
+    ? `${actualText.slice(0, -1)}x`
+    : `${actualText}x`;
+  inputString.textContent = result;
 };
 
 const subClick = () => {
-  alert('-');
+  const actualText = inputString.textContent;
+  const result = actualText.slice(-1) === '.'
+    ? `${actualText.slice(0, -1)}-`
+    : `${actualText}-`;
+  inputString.textContent = result;
 };
 
 const plusClick = () => {
-  alert('+');
+  const actualText = inputString.textContent;
+  const result = actualText.slice(-1) === '.'
+    ? `${actualText.slice(0, -1)}+`
+    : `${actualText}+`;
+  inputString.textContent = result;
 };
 
 button0.addEventListener('click', () => numbersClick(0));
