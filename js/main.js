@@ -47,12 +47,8 @@ const delClick = () => inputString.textContent = 0;
 
 const setOperatorText = operator => {
   const actualText = inputString.textContent;
-  // const regex = RegExp('(.*[0-9])[x,/,-,+]$');
-  const result = actualText.slice(-1) === '.'
-    || actualText.slice(-1) === 'x'
-    || actualText.slice(-1) === '/'
-    || actualText.slice(-1) === '+'
-    || actualText.slice(-1) === '-'
+  const regex = RegExp('(.*[0-9])[x,/,-,+]$');
+  const result = regex.test(actualText)
       ? `${actualText.slice(0, -1)}${operator}`
       : `${actualText}${operator}`;
   inputString.textContent = result;
