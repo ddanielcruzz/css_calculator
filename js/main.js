@@ -26,8 +26,8 @@ const numbersClick = number => {
   const result = actualText === '0' && number === '0'
     ? '0'
     : actualText == '0'
-    ? number
-    : `${actualText}${number}`;
+      ? number
+      : `${actualText}${number}`;
 
   inputString.textContent = result;
 };
@@ -40,11 +40,11 @@ const equalClick = () => {
 
 const periodClick = () => {
   const actualText = inputString.textContent;
-  inputString.textContent = actualText.indexOf('.') >= 0 
-    ? actualText + '' 
+  inputString.textContent = actualText.indexOf('.') >= 0
+    ? actualText + ''
     : actualText == 0
-    ? '0.'
-    : actualText + '.';
+      ? '0.'
+      : actualText + '.';
 
 };
 
@@ -55,32 +55,48 @@ const delClick = () => {
 const divClick = () => {
   const actualText = inputString.textContent;
   const result = actualText.slice(-1) === '.'
-    ? `${actualText.slice(0, -1)}/`
-    : `${actualText}/`;
+    || actualText.slice(-1) === 'x'
+    || actualText.slice(-1) === '/'
+    || actualText.slice(-1) === '+'
+    || actualText.slice(-1) === '-'
+      ? `${actualText.slice(0, -1)}/`
+      : `${actualText}/`;
   inputString.textContent = result;
 };
 
 const timesClick = () => {
   const actualText = inputString.textContent;
   const result = actualText.slice(-1) === '.'
-    ? `${actualText.slice(0, -1)}x`
-    : `${actualText}x`;
+    || actualText.slice(-1) === 'x'
+    || actualText.slice(-1) === '/'
+    || actualText.slice(-1) === '+'
+    || actualText.slice(-1) === '-'
+      ? `${actualText.slice(0, -1)}x`
+      : `${actualText}x`;
   inputString.textContent = result;
 };
 
 const subClick = () => {
   const actualText = inputString.textContent;
   const result = actualText.slice(-1) === '.'
-    ? `${actualText.slice(0, -1)}-`
-    : `${actualText}-`;
+    || actualText.slice(-1) === 'x'
+    || actualText.slice(-1) === '/'
+    || actualText.slice(-1) === '+'
+    || actualText.slice(-1) === '-'
+      ? `${actualText.slice(0, -1)}-`
+      : `${actualText}-`;
   inputString.textContent = result;
 };
 
 const plusClick = () => {
   const actualText = inputString.textContent;
   const result = actualText.slice(-1) === '.'
-    ? `${actualText.slice(0, -1)}+`
-    : `${actualText}+`;
+    || actualText.slice(-1) === 'x'
+    || actualText.slice(-1) === '/'
+    || actualText.slice(-1) === '+'
+    || actualText.slice(-1) === '-'
+      ? `${actualText.slice(0, -1)}+`
+      : `${actualText}+`;
   inputString.textContent = result;
 };
 
