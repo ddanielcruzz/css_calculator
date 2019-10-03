@@ -25,9 +25,9 @@ const numbersClick = number => {
 
   const result = actualText === '0' && number === '0'
     ? '0'
-    : actualText == '0'
-      ? number
-      : `${actualText}${number}`;
+    : actualText === '0'
+    ? number
+    : `${actualText}${number}`;
 
   inputString.textContent = result;
 };
@@ -40,65 +40,28 @@ const equalClick = () => {
 
 const periodClick = () => {
   const actualText = inputString.textContent;
-  inputString.textContent = actualText.indexOf('.') >= 0
-    ? actualText + ''
-    : actualText == 0
-      ? '0.'
-      : actualText + '.';
-
+  inputString.textContent = `${actualText}${actualText.indexOf('.') >= 0 ? '' : '.'}`;
 };
 
-const delClick = () => {
-  inputString.textContent = 0;
-};
+const delClick = () => inputString.textContent = 0;
 
-const divClick = () => {
+const setOperatorText = operator => {
   const actualText = inputString.textContent;
+  // const regex = RegExp('(.*[0-9])[x,/,-,+]$');
   const result = actualText.slice(-1) === '.'
     || actualText.slice(-1) === 'x'
     || actualText.slice(-1) === '/'
     || actualText.slice(-1) === '+'
     || actualText.slice(-1) === '-'
-      ? `${actualText.slice(0, -1)}/`
-      : `${actualText}/`;
+      ? `${actualText.slice(0, -1)}${operator}`
+      : `${actualText}${operator}`;
   inputString.textContent = result;
 };
 
-const timesClick = () => {
-  const actualText = inputString.textContent;
-  const result = actualText.slice(-1) === '.'
-    || actualText.slice(-1) === 'x'
-    || actualText.slice(-1) === '/'
-    || actualText.slice(-1) === '+'
-    || actualText.slice(-1) === '-'
-      ? `${actualText.slice(0, -1)}x`
-      : `${actualText}x`;
-  inputString.textContent = result;
-};
-
-const subClick = () => {
-  const actualText = inputString.textContent;
-  const result = actualText.slice(-1) === '.'
-    || actualText.slice(-1) === 'x'
-    || actualText.slice(-1) === '/'
-    || actualText.slice(-1) === '+'
-    || actualText.slice(-1) === '-'
-      ? `${actualText.slice(0, -1)}-`
-      : `${actualText}-`;
-  inputString.textContent = result;
-};
-
-const plusClick = () => {
-  const actualText = inputString.textContent;
-  const result = actualText.slice(-1) === '.'
-    || actualText.slice(-1) === 'x'
-    || actualText.slice(-1) === '/'
-    || actualText.slice(-1) === '+'
-    || actualText.slice(-1) === '-'
-      ? `${actualText.slice(0, -1)}+`
-      : `${actualText}+`;
-  inputString.textContent = result;
-};
+const divClick = () => setOperatorText('/');
+const timesClick = () => setOperatorText('x');
+const subClick = () => setOperatorText('-');
+const plusClick = () => setOperatorText('+');
 
 button0.addEventListener('click', () => numbersClick(0));
 button1.addEventListener('click', () => numbersClick(1));
