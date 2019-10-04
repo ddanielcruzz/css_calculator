@@ -1,5 +1,5 @@
 const numberButtons = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(element => document.getElementById(`btn-${element}`));
-numberButtons.map((numberButton, index) => numberButton.addEventListener('click', () => numbersClick(index)));
+numberButtons.forEach((numberButton, index) => numberButton.addEventListener('click', () => numbersClick(index)));
 
 const equalButton = document.getElementById('equal');
 const periodButton = document.getElementById('period');
@@ -29,14 +29,22 @@ const equalClick = () => {
 
 const periodClick = () => {
   const actualText = inputString.textContent;
-  inputString.textContent = `${actualText}${actualText.indexOf('.') >= 0 ? '' : '.'}`;
+  const indexes = [
+    actualText.lastIndexOf('-'),
+    actualText.lastIndexOf('/'),
+    actualText.lastIndexOf('+'),
+    actualText.lastIndexOf('x')
+  ];
+  const lastOperatorIndex = Math.max(...indexes);
+  const lastNumberFromLastSymbol = actualText.substring(lastOperatorIndex+1);
+  inputString.textContent = `${actualText}${lastNumberFromLastSymbol.indexOf('.') >= 0 ? '' : '.'}`;
 };
 
 const delClick = () => inputString.textContent = 0;
 
 const setOperatorText = operator => {
   const actualText = inputString.textContent;
-  const regex = RegExp('(.*[0-9])[-,x,/,+]$');  
+  const regex = RegExp('(.*[0-9])[-,x,/,+,.]$');  
   inputString.textContent = `${regex.test(actualText) ? actualText.slice(0, -1) : actualText}${operator}`;
 };
 
